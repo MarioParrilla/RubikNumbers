@@ -14,6 +14,7 @@ public class App {
 
 	public static void menu(){
 		boolean continueM = false;
+		RunMode runMode = new RunMode();
 
 		try {
 			while(!continueM){
@@ -29,15 +30,15 @@ public class App {
 
 				switch (option) {
 					case "1" -> {
-						RunMode.basicMode();
+						runMode.basicMode();
 						continueM = true;
 					}
 					case "2" -> {
-						RunMode.advancedMode();
+						runMode.advancedMode();
 						continueM = true;
 					}
 					case "3" -> {
-						RunMode.expertMode();
+						runMode.expertMode();
 						continueM = true;
 					}
 					case "4" -> {

@@ -4,128 +4,134 @@ public class RunMode {
     static int player1, player2;
     final static int MAXPOINTS = 5;
 
-    public static void basicMode(){
+    public void basicMode(){
         Crono c = new Crono();
         player1 = 0;
         player2 = 0;
 
         System.out.println("\nVas a jugar al modo basico!");
-        BasicMode bM = new BasicMode();
+        BasicMode basicMode = new BasicMode();
         c.start();
 
-        bM.showBoard();
+        basicMode.showBoard();
         System.out.println("Player 1: "+player1+" -- Player 2: "+player2);
 
         while(true){
             System.out.println("\nPlayer 1 -- Horizontal");
-            bM.moveHorizontalBoard(bM.requestLane()-1,bM.requestMovements());
-            int puntos = bM.checkBoardToPointsHorizontal() + bM.checkBoardToPointsVertical();
+            basicMode.moveHorizontalBoard(basicMode.requestLane()-1,basicMode.requestMovements());
+            int puntos = basicMode.checkBoardToPointsHorizontal() + basicMode.checkBoardToPointsVertical();
             if (puntos!=0)player1+=puntos;
             if (player1>=MAXPOINTS) break;
 
-            bM.showBoard();
+            basicMode.showBoard();
             System.out.println("Player 1: "+player1+" -- Player 2: "+player2);
 
             System.out.println("\nPlayer 2 -- Vertical");
-            bM.moveVerticalBoard(bM.requestLane()-1,bM.requestMovements());
-            puntos = bM.checkBoardToPointsHorizontal() + bM.checkBoardToPointsVertical();
+            basicMode.moveVerticalBoard(basicMode.requestLane()-1,basicMode.requestMovements());
+            puntos = basicMode.checkBoardToPointsHorizontal() + basicMode.checkBoardToPointsVertical();
             if (puntos!=0)player2+=puntos;
             if (player2>=MAXPOINTS) break;
 
-            bM.showBoard();
+            basicMode.showBoard();
             System.out.println("Player 1: "+player1+" -- Player 2: "+player2);
 
         }
-        if (player1>=MAXPOINTS) System.out.println("El Player 1 ha ganado con "+player1+" puntos!\n");
-        else System.out.println("El Player 2 ha ganado con "+player2+" puntos!\n");
-        c.stopTime();
-        System.out.println(c.getTime());
+        if (player1>=MAXPOINTS) System.out.println("El Player 1 ha ganado con "+player1+" puntos!");
+        else System.out.println("El Player 2 ha ganado con "+player2+" puntos!");
+
+        this.getTimeOfGame(c);
         App.menu();
     }
 
-    public static void advancedMode(){
+    public void advancedMode(){
 
         Crono c = new Crono();
         player1 = 0;
         player2 = 0;
 
         System.out.println("\nVas a jugar al modo Avanzado!");
-        AdvancedMode aM = new AdvancedMode();
+        AdvancedMode advancedMode = new AdvancedMode();
         c.start();
 
-        aM.showBoard();
+        advancedMode.showBoard();
         System.out.println("Player 1: "+player1+" -- Player 2: "+player2);
 
         while(true){
             System.out.println("\nPlayer 1");
 
-            aM.requestTypeOfMovement();
-            int puntos = aM.checkBoardToPointsHorizontal() + aM.checkBoardToPointsVertical();
+            advancedMode.requestTypeOfMovement();
+            int puntos = advancedMode.checkBoardToPointsHorizontal() + advancedMode.checkBoardToPointsVertical();
             if (puntos!=0)player1+=puntos;
             if (player1>=MAXPOINTS) break;
 
-            aM.refillBoard();
-            aM.showBoard();
+            advancedMode.refillBoard();
+            advancedMode.showBoard();
             System.out.println("Player 1: "+player1+" -- Player 2: "+player2);
 
             System.out.println("\nPlayer 2");
 
-            aM.requestTypeOfMovement();
-            puntos = aM.checkBoardToPointsHorizontal() + aM.checkBoardToPointsVertical();
+            advancedMode.requestTypeOfMovement();
+            puntos = advancedMode.checkBoardToPointsHorizontal() + advancedMode.checkBoardToPointsVertical();
             if (puntos!=0)player2+=puntos;
             if (player2>=MAXPOINTS) break;
 
-            aM.refillBoard();
-            aM.showBoard();
+            advancedMode.refillBoard();
+            advancedMode.showBoard();
             System.out.println("Player 1: "+player1+" -- Player 2: "+player2);
 
         }
-        if (player1>=MAXPOINTS) System.out.println("El Player 1 ha ganado con "+player1+" puntos!\n");
-        else System.out.println("El Player 2 ha ganado con "+player2+" puntos!\n");
-        c.stopTime();
-        System.out.println(c.getTime());
+        if (player1>=MAXPOINTS) System.out.println("El Player 1 ha ganado con "+player1+" puntos!");
+        else System.out.println("El Player 2 ha ganado con "+player2+" puntos!");
+
+        this.getTimeOfGame(c);
         App.menu();
     }
 
-    public static void expertMode(){
+    public void expertMode(){
 
         Crono c = new Crono();
         player1 = 0;
         player2 = 0;
 
         System.out.println("\nVas a jugar al modo Experto!");
-        ExpertMode eM = new ExpertMode();
+        ExpertMode expertMode = new ExpertMode();
 
-        eM.showBoard();
+        expertMode.showBoard();
         System.out.println("Player 1: "+player1+" -- Player 2: "+player2);
         c.start();
 
         while (true){
             System.out.println("\nPlayer 1 -- Horizontal");
-            eM.moveHorizontalBoard(eM.requestLane("player1")-1,eM.requestMovements());
-            int puntos = eM.checkBoardToPointsHorizontal() + eM.checkBoardToPointsVertical();
+            expertMode.moveHorizontalBoard(expertMode.requestLane("player1")-1,expertMode.requestMovements());
+            int puntos = expertMode.checkBoardToPointsHorizontal() + expertMode.checkBoardToPointsVertical();
             if (puntos!=0)player1+=puntos;
             if (player1>=MAXPOINTS) break;
 
-            eM.turnBoard();
-            eM.showBoard();
+            expertMode.turnBoard();
+            expertMode.showBoard();
             System.out.println("Player 1: "+player1+" -- Player 2: "+player2);
 
             System.out.println("\nPlayer 2 -- Vertical");
-            eM.moveVerticalBoard(eM.requestLane("player2")-1,eM.requestMovements());
-            puntos = eM.checkBoardToPointsHorizontal() + eM.checkBoardToPointsVertical();
+            expertMode.moveVerticalBoard(expertMode.requestLane("player2")-1,expertMode.requestMovements());
+            puntos = expertMode.checkBoardToPointsHorizontal() + expertMode.checkBoardToPointsVertical();
             if (puntos!=0)player2+=puntos;
             if (player2>=MAXPOINTS) break;
 
-            eM.turnBoard();
-            eM.showBoard();
+            expertMode.turnBoard();
+            expertMode.showBoard();
             System.out.println("Player 1: "+player1+" -- Player 2: "+player2);
         }
-        if (player1>=MAXPOINTS) System.out.println("El Player 1 ha ganado con "+player1+" puntos!\n");
-        else System.out.println("El Player 2 ha ganado con "+player2+" puntos!\n");
-        c.stopTime();
-        System.out.println(c.getTime());
+        if (player1>=MAXPOINTS) System.out.println("El Player 1 ha ganado con "+player1+" puntos!");
+        else System.out.println("El Player 2 ha ganado con "+player2+" puntos!");
+
+        this.getTimeOfGame(c);
         App.menu();
 
     }
+
+    public void getTimeOfGame(Crono c){
+        c.stopTime();
+        System.out.println("La partida ha tardado: "+c.getTime()+"\n");
+    }
+
 }
